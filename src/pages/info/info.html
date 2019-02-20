@@ -1,0 +1,54 @@
+<!--
+  Generated template for the InfoPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar>
+    <ion-title>Información del producto</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-card>
+    <ion-slides pager>
+      <ion-slide *ngFor="let img of imgs">
+        <img src="http://img.segundamano.mx/medium/{{img.path}}">
+      </ion-slide>
+    </ion-slides>
+    <img *ngIf="video.ad.hasOwnProperty('thumbnail') == false" src="../assets/Logo.png">
+  </ion-card>
+  <ion-card>
+    <ion-item>
+      {{video.ad.subject}}
+      <ion-icon name = "heart" item-end (click) = "favoritos(video)"></ion-icon>
+    </ion-item>
+    <h2 *ngIf="video.ad.hasOwnProperty('list_price')">
+      {{video.ad.prices[0].label}}
+    </h2>
+  </ion-card>
+  <ion-card>
+      <ion-item>
+        <ion-avatar>
+          <img src="../assets/imgs/logo.png">
+        </ion-avatar>
+        <h2 *ngIf="video.ad.hasOwnProperty('user')">
+          {{video.ad.user.account.name}}
+        </h2>
+        <p *ngIf="video.ad.hasOwnProperty('user')">
+          {{video.ad.user.account.since}}
+      </ion-item>
+    </ion-card>
+  <ion-card>
+    Ubicación: {{video.ad.locations[0].locations[0].label}},{{video.ad.locations[0].label}}
+  </ion-card>
+  <ion-card>
+    <h2>
+      Descripción: {{video.ad.body}}
+    </h2>
+    <h2>
+      Fecha de publicación: {{video.ad.list_time.label}}
+    </h2>
+  </ion-card>
+</ion-content>

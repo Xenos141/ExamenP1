@@ -1,0 +1,46 @@
+<!--
+  Generated template for the EmpleoPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-toolbar>
+    <ion-title padding style = "background-color : #191919">
+      Empleos
+    </ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="buscar()">
+        <ion-icon name="search"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding style = "background-color : #191919">
+    <ion-grid>
+        <ion-row>
+          <ion-col *ngFor="let empleo of empleos" col-4>
+            <ion-card (click)="informacion3(empleo)" style = "background-color : #faa916">
+              <img *ngIf="empleo.ad.hasOwnProperty('thumbnail')"
+                src="https://img.segundamano.mx/cover/{{empleo.ad.thumbnail.path}}">
+              <img *ngIf="empleo.ad.hasOwnProperty('thumbnail') == false" src="../assets/Empleos.jpg">
+              <ion-card-content>
+                <h1 *ngIf="empleo.ad.hasOwnProperty('subject')">
+                  {{empleo.ad.subject}}
+                </h1>
+                <h2 *ngIf="empleo.ad.hasOwnProperty('list_price')">
+                  {{empleo.ad.prices[0].label}}
+                </h2>
+                <p>
+                  {{empleo.ad.locations[0].locations[0].label}},{{empleo.ad.locations[0].label}}
+                </p>
+                <h2>
+                  Fecha de publicación: {{empleo.ad.list_time.label}}
+                </h2>
+              </ion-card-content>
+            </ion-card>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+</ion-content>

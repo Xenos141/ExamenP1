@@ -1,14 +1,40 @@
 <ion-header>
-  <ion-navbar>
-    <ion-title>
-      Ionic Blank
+  <ion-toolbar>
+    <ion-title padding style = "background-color : #191919">
+      Videojuegos
     </ion-title>
-  </ion-navbar>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="buscar()">
+        <ion-icon name="search"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-toolbar>
 </ion-header>
 
-<ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-  </p>
+<ion-content padding style = "background-color : #191919">
+  <ion-grid>
+    <ion-row>
+      <ion-col *ngFor="let video of videos" col-4>
+        <ion-card (click)="informacion(video)" style = "background-color : #faa916">
+          <img *ngIf="video.ad.hasOwnProperty('thumbnail')"
+            src="https://img.segundamano.mx/cover/{{video.ad.thumbnail.path}}">
+          <img *ngIf="video.ad.hasOwnProperty('thumbnail') == false" src="../assets/Videojuegos.jpg">
+          <ion-card-content>
+            <h1 *ngIf="video.ad.hasOwnProperty('subject')">
+              {{video.ad.subject}}
+            </h1>
+            <h2 *ngIf="video.ad.hasOwnProperty('list_price')">
+              {{video.ad.prices[0].label}}
+            </h2>
+            <p>
+              {{video.ad.locations[0].locations[0].label}},{{video.ad.locations[0].label}}
+            </p>
+            <h2>
+              Fecha de publicación: {{video.ad.list_time.label}}
+            </h2>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>
